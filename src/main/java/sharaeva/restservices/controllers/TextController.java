@@ -1,17 +1,18 @@
 package sharaeva.restservices.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import sharaeva.restservices.Services.TextServiceImplementation;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 @RestController
 public class TextController {
 
+    private final TextServiceImplementation textService = new TextServiceImplementation();
+
     @PostMapping("/text")
-    public Collection<String> proceedText() {
+    public Collection<String> postText() {
         ArrayList<String> text = new ArrayList<>();
 
         text.add("First String");
@@ -19,10 +20,7 @@ public class TextController {
         text.add("Third String");
         text.add("FirstString1");
 
-        return text.stream()
-                .sorted(Comparator.comparingInt(String::length).thenComparing(Comparator.naturalOrder()))
-                .map(string -> "(".concat(String.valueOf(string.length())).concat("): ").concat(string))
-                .collect(Collectors.toList());
+        return textService.proceedText(text);
     }
 
 }
