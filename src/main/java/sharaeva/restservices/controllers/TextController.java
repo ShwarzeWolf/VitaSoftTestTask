@@ -1,7 +1,8 @@
 package sharaeva.restservices.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import sharaeva.restservices.Services.TextServiceImplementation;
+import sharaeva.restservices.Services.Implementations.TextServiceImplementation;
+import sharaeva.restservices.Services.TextService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +10,7 @@ import java.util.Collection;
 @RestController
 public class TextController {
 
-    private final TextServiceImplementation textService = new TextServiceImplementation();
+    private final TextService textService = new TextServiceImplementation();
 
     @PostMapping("/text")
     public Collection<String> postText() {
