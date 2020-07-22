@@ -12,15 +12,8 @@ public class TextController {
 
     private final TextService textService = new TextServiceImplementation();
 
-    @PostMapping("/text")
-    public Collection<String> postText() {
-        ArrayList<String> text = new ArrayList<>();
-
-        text.add("First String");
-        text.add("second String");
-        text.add("Third String");
-        text.add("FirstString1");
-
+    @PostMapping(value = "/text", consumes = "application/json", produces = "application/json")
+    public @ResponseBody Collection<String> postText(@RequestBody Collection<String> text) {
         return textService.proceedText(text);
     }
 
