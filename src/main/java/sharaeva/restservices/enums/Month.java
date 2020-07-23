@@ -1,4 +1,4 @@
-package sharaeva.restservices;
+package sharaeva.restservices.enums;
 
 public enum Month {
     JANUARY("ЯНВАРЬ"),
@@ -20,7 +20,7 @@ public enum Month {
         this.russianName = name;
     }
 
-    public String getRussianName(){
+    public String getRussianName() {
         return russianName;
     }
 }
