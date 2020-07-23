@@ -1,26 +1,43 @@
 package sharaeva.restservices.Services.Implementations;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import sharaeva.restservices.Month;
 import sharaeva.restservices.Services.MonthsService;
 
 public class MonthsServiceImplementation implements MonthsService {
 
     @Override
-    public String getMonthNameByNumber(int monthNumber) {
+    public String getMonthName(int monthNumber) {
+        String ERROR_STRING = "\"INCORRECT INPUT DATA\"";
+
+        if (monthNumber > 12 || monthNumber < 1)
+            return ERROR_STRING;
+        else {
+            assert getMonthNameByNumber(monthNumber) != null;
+            return formatString(getMonthNameByNumber(monthNumber).getRussianName());
+        }
+    }
+
+    private String formatString(String stringToFormat){
+        stringToFormat = stringToFormat.replaceAll("(.)", "$1-");
+        stringToFormat = stringToFormat.substring(0, stringToFormat.length() - 1);
+        return "\"".concat(stringToFormat).concat("\"");
+    }
+
+    private Month getMonthNameByNumber(int monthNumber) {
         switch(monthNumber){
-            case 1: return "\"Я-Н-В-А-Р-Ь\"";
-            case 2: return "\"Ф-Е-В-Р-А-Л-Ь\"";
-            case 3: return "\"М-А-Р-Т\"";
-            case 4: return "\"А-П-Р-Е-Л-Ь\"";
-            case 5: return "\"М-А-Й\"";
-            case 6: return "\"И-Ю-Н-Ь\"";
-            case 7: return "\"И-Ю-Л-Ь\"";
-            case 8: return "\"А-В-Г-У-С-Т\"";
-            case 9: return "\"С-Е-Н-Т-Я-Б-Р-Ь\"";
-            case 10: return "\"О-К-Т-Я-Б-Р-Ь\"";
-            case 11: return "\"Н-О-Я-Б-Р-Ь\"";
-            case 12: return "\"Д-Е-К-А-Б-Р-Ь\"";
-            default: return "\"INCORRECT INPUT DATA\"";
+            case 1: return Month.JANUARY;
+            case 2: return Month.FEBRUARY;
+            case 3: return Month.MARCH;
+            case 4: return Month.APRIL;
+            case 5: return Month.MAY;
+            case 6: return Month.JUNE;
+            case 7: return Month.JULI;
+            case 8: return Month.AUGUST;
+            case 9: return Month.SEPTEMBER;
+            case 10: return Month.OCTOBER;
+            case 11: return Month.NOVEMBER;
+            case 12: return Month.DECEMBER;
+            default: return null;
         }
     }
 }

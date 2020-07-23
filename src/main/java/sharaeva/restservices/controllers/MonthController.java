@@ -13,7 +13,7 @@ public class MonthController {
 
     @GetMapping("/monthInfo")
     public String getMonthNameByNumber(@RequestParam(value = "monthNumber") int monthNumber) {
-        return monthsService.getMonthNameByNumber(monthNumber);
+        return monthsService.getMonthName(monthNumber);
     }
 
 }
